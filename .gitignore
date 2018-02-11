@@ -1,0 +1,15 @@
+.Python
+.cache
+.env
+.pytest_cache/
+.python-version
+.venv
+/backend/*$py.class
+/backend/.mypy_cache/
+/backend/ENV/
+/backend/__pycache__/
+/backend/env.bak/
+/backend/env/
+/backend/venv.bak/
+/backend/venv/
+/dist
