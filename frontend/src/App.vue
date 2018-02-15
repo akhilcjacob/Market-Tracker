@@ -1,13 +1,13 @@
 <template>
 
   <div>
-    <nav class="navbar bg-dark text-light">
-      <a class="navbar-brand">Boiler Plate Homepage</a>
+<!--     <nav class="navbar navbar-light text-">
+      <a class="navbar-brand">Market Monitor</a>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
         </li>
       </ul>
-    </nav>
+    </nav> -->
     <div id="app" class="container">
       <router-view/>
     </div>
@@ -19,3 +19,8 @@ export default {
   name: 'App'
 }
 </script>
+<style type="text/css">
+  .navbar{
+    background-color: white !important;
+  }
+</style>

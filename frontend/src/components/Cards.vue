@@ -1,16 +1,16 @@
 <template>
   <div>
    <div id="app">
-    <div id="main">
-      <input type="text" placeholder="Search.." v-model="search"/>
-      <div v-bind:key="result" v-for="result in filteredresults">
+    <div id="main" class="row pt-5 mb-5 pr-4 pl-4">
+      <input type="text" class="mb-lg-5" placeholder="Search.." v-model="search"/>
+      <div v-bind:key="result" class="pl-0 pt-3 pr-4" v-for="result in filteredresults">
        <!-- <span>{{result.companyName}}</span> -->
-
+      
        <SingleCard v-bind:company="result"></SingleCard>
      </div>
    </div>
  </div>
- <button @click="getStocks" type="button" class="btn btn-primmary-outline">Refresh List</button>
+ <!-- <button @click="getStocks" type="button" class="btn btn-primmary-outline">Refresh List</button> -->
 </div>
 </template>
 
@@ -66,6 +66,10 @@ input{
   font-size :4em;
   outline :none;
   text-align :center;
+}
+body{
+  background: #f2f4f8;
+  width: 100%;
 }
 
 </style>
