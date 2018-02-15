@@ -34,7 +34,6 @@ export default {
   box-shadow: 0 14px 26px rgba(0,0,0,0.04);
   transition: all 0.3s ease-out;
   text-decoration: none;
-
 }
 
 .card:hover {
