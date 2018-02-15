@@ -1,4 +1,4 @@
-# Vue.js-Workshop
+# Vue.js Simple
 A gentle introduction to Vue.js
 
 ## Build Setup
