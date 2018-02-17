@@ -24,11 +24,13 @@ def random_number():
 
 @app.route('/api/stocks')
 def getMostUsed():
-    # response = {
-        # 'stock': get_most_active()
-    # }
-    # return jsonify(response)
     return get_most_active()
+
+@app.route('/api/<symbol>')
+def getCompanyBasic(symbol):
+    return get_symbol(symbol)
+
+
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')

@@ -1,17 +1,29 @@
 <template>
-  <div>
-   <div id="app">
-    <input type="text" class="" placeholder="Search.." v-model="search"/>
-    <div id="main" class="row">
-      <div v-bind:key="result" class="" v-for="result in filteredresults">
-        <div>
-          <SingleCard class="mb-3 ml-3" v-bind:company="result"></SingleCard>
-        </div>
+ <div id="app" class="container-fluid">
+  <input type="text" class="" placeholder="Search..." v-model="search"/>
+      <paginate v-if="isReady"
+      name="filteredresults"
+      :list="filteredresults"
+      tag="div"
+      class="row align-content-stretch"
+      :per="52">
+      <div class="col-md-3 col-md-offset-5 col-centered" v-bind:key="item" v-for="item in paginated('filteredresults')">
+        <SingleCard  class="mt-3" v-bind:company="item"></SingleCard>
       </div>
-    </div>
-  </div>
-  <!-- <button @click="getStocks" type="button" class="btn btn-primmary-outline">Refresh List</button> -->
+    </paginate>
+<div class="container text-right">
+  
+    <paginate-links
+    for="filteredresults"
+    :simple="{
+    prev: '<< Back  |',
+    next: '|  Next >>'
+  }"
+  ></paginate-links>
 </div>
+</div>
+</div>
+<!-- <button @click="getStocks" type="button" class="btn btn-primmary-outline">Refresh List</button> -->
 </template>
 
 <script>
@@ -27,34 +39,37 @@ export default {
     getStocks () {
       this.results = this.getStockFromBackend()
       this.search = ''
+      this.isReady = true
     },
     getStockFromBackend () {
       const path = `http://localhost:5000/api/stocks`
       axios.get(path)
-      .then(response => {
-        this.results = response.data
-      })
-      .catch(error => {
-        console.log(error)
-      })
+        .then(response => {
+          this.results = response.data
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   },
   data () {
     return {
       search: '',
-      results: []
+      isReady: false,
+      results: [],
+      paginate: ['filteredresults']
     }
   },
   computed:
   {
     filteredresults: function () {
       var self = this
-      if (self.search !== '') { return this.results.filter(function (result) { return result.companyName.toLowerCase().indexOf(self.search.toLowerCase()) >= 0 }) } else { return this.results }
+      if (self.search !== '') { return this.results.filter(function (result) { return result.symbol.toLowerCase().indexOf(self.search.toLowerCase()) >= 0 }) } else { return this.results }
     }
-},
-beforeMount () {
-  this.getStocks()
-}
+  },
+  beforeMount () {
+    this.getStocks()
+  }
 }
 
 </script>
@@ -74,5 +89,11 @@ body{
   background: #f2f4f8;
   width: 100%;
 }
-
+ul.paginate-links{
+  color: green;
+  text-align: center;
+}
+li.prev, li.next {
+  display: inline-block;
+}
 </style>
